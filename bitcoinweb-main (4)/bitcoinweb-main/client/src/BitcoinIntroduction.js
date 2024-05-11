@@ -11,6 +11,7 @@ function MyComponent() {
         element.scrollIntoView({ behavior: 'smooth' });
     };
 
+    
     return (
         <div className='text-bitcoin-introduction'>
 
