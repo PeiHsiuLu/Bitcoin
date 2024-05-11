@@ -1,0 +1,626 @@
+/*total*/
+body {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+    font-family: 標楷體
+;
+}
+
+.main{
+    margin-left: 8.33vw;
+    margin-right: 8.33vw;
+}
+
+/*nav-bar*/
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: auto;
+    overflow-y: hidden;
+    padding: 0.8vw;
+    align-items: center;
+    margin-top: 1.67vw;
+}
+.nav-scroller .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    gap: 3.67vw;
+    padding: 0 0.83vw;
+}
+.nav-item {
+    font-size: 1.5vw;
+    padding: 0.5vw 3.33vw;
+    border: 0.167vw solid white;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffcc00;
+    border-radius: 5px;
+    font-family: 標楷體;
+}
+.nav-item:hover,
+.nav-item:focus {
+    border-color: #ffffff;
+    background-color: white;
+    color: black;
+}
+
+/*目前不明*/
+.card {
+    border: none;
+}
+.card-header {
+    text-align: left;
+}
+
+/*控制計算機和圖表的容器*/
+
+.app-container {
+    display: flex;
+    justify-content: space-between; /* 平均分配子元素间的空间 */
+    margin-top: 4.16vw;
+}
+/* 計算機 */
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    margin-right: 4.16vw;
+}
+.calculator-fieldset {
+    border: 0.1vw solid white; /* 2px 轉換為 vw */
+    border-radius: 0.6vw; /* 8px 轉換為 vw */
+    padding: 1.5vw; /* 20px 轉換為 vw */
+    width: 100%;
+    max-width: 15vw; /* 300px 轉換為 vw */
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+    height: 25vw; /* 400px 轉換為 vw */
+    margin-left: 2.4vw; /* 32px 轉換為 vw */
+    margin-bottom: 2vw; /* 20px 轉換為 vw */
+    overflow-y: auto; /* 或者使用 overflow: scroll; */
+}
+.calculator-fieldset legend {
+    font-size: 1.35vw; /* 18px 轉換為 vw */
+    font-weight: bold;
+    margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+}
+.calculator-fieldset label {
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+}
+.calculator-fieldset select,
+.calculator-fieldset input[type="number"] {
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+    font-family: 標楷體;
+} 
+.form-group {
+    margin-bottom: 2vw; /* 40px 轉換為 vw */
+    margin-top: 1.33vw; /* 20px 轉換為 vw */
+}
+.form-group:last-child {
+    margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+}
+.input{
+    font-size: 1.8vw;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+}
+.input-group-text {
+    margin: 0 0.25vw; /* 5px 轉換為 vw */
+}
+/* 讓所有 label 字體大小相同 */
+label {
+    font-size: 1.35vw; /* 18px 轉換為 vw */
+}
+legend {
+    text-align: center;
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+}
+.output-container {
+    margin-top: 0.5vw; /* 10px 轉換為 vw */
+    align-items: left;
+    margin-left: 10.42vw; /* 155px 轉換為 vw */
+    margin-bottom: 2vw; /* 20px 轉換為 vw */
+    width: 100%;
+    max-width: 20vw; /* 400px 轉換為 vw */
+}
+.output {
+    color: white;
+    background-color: transparent;
+    border: 0.1vw solid white; /* 2px 轉換為 vw */
+    border-radius: 0.375vw; /* 5px 轉換為 vw */
+    padding: 1.125vw 4.5vw; /* 15px 60px 轉換為 vw */
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
+    font-family: 標楷體;
+}
+.output:hover,
+.output:focus {
+    background-color: red; /* 悬停时的背景色 */
+    box-shadow: 0 0 0.833vw red; /* 10px 轉換為 vw */
+}
+/* 添加点击动画效果 */
+.clicked {
+    animation: clickEffect 0.5s;
+}
+@keyframes clickEffect {
+    0% {
+        background-color: transparent; /* 初始背景色 */
+        box-shadow: none; /* 初始阴影 */
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.1); /* 最终背景色 */
+        box-shadow: 0 0 0.833vw rgba(255, 255, 255, 0.5); /* 最终阴影 */
+    }
+}
+
+.chart-container {
+    width: 50vw;
+    height:25vw;
+    display:inline-block;
+
+  }
+
+
+  @media screen and (max-width: 768px) {
+    /* 控制計算機和圖表的容器 */
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4.16vw;
+        align-items: center;
+    }
+
+    /* 計算機 */
+    .calculator-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: auto;
+        margin-right: 4.16vw;
+    }
+
+    .calculator-fieldset {
+        border: 0.1vw solid white; /* 2px 轉換為 vw */
+        border-radius: 0.6vw; /* 8px 轉換為 vw */
+        padding: 1.5vw; /* 20px 轉換為 vw */
+        width: 100%;
+        min-width: 65vw; /* 300px 轉換為 vw */
+        font-size: 4vw; /* 24px 轉換為 vw */
+        height: 45vw; /* 400px 轉換為 vw */
+        margin-bottom: 2vw; /* 20px 轉換為 vw */
+        overflow-y: auto; /* 或者使用 overflow: scroll; */
+    }
+
+    .calculator-fieldset legend {
+        font-size: 3.5vw; /* 18px 轉換為 vw */
+        font-weight: bold;
+        margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+    }
+
+    .calculator-fieldset label {
+        font-size: 3.5vw; /* 24px 轉換為 vw */
+    }
+
+    .form-group {
+        margin-bottom: 2vw; /* 40px 轉換為 vw */
+        margin-top: 1.33vw; /* 20px 轉換為 vw */
+        font-size: 3.5vw;
+    }
+    #frequency{
+        font-size: 3.5vw;
+    }
+
+    .form-group:last-child {
+        margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+    }
+
+    .input {
+        font-size: 3.5vw;
+    }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5vw; /* 10px 轉換為 vw */
+    }
+
+    .input-group-text {
+        margin: 0 4vw; /* 5px 轉換為 vw */
+    }
+
+    /* 讓所有 label 字體大小相同 */
+    label {
+        font-size: 2.5vw; /* 18px 轉換為 vw */
+    }
+
+    legend {
+        text-align: center;
+        font-size: 3.5vw; /* 24px 轉換為 vw */
+    }
+
+    .output-container {
+        margin-top: 0.5vw; /* 10px 轉換為 vw */
+        align-items: left;
+        margin-left: 10.42vw; /* 155px 轉換為 vw */
+        margin-bottom: 2vw; /* 20px 轉換為 vw */
+        width: 100%;
+        max-width: 20vw; /* 400px 轉換為 vw */
+    }
+
+    .output {
+        color: white;
+        background-color: transparent;
+        border: 0.4vw solid white; /* 2px 轉換為 vw */
+        border-radius: 1.2vw; /* 5px 轉換為 vw */
+        padding: 1.125vw 4.5vw; /* 15px 60px 轉換為 vw */
+        font-size: 3.5vw; /* 24px 轉換為 vw */
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
+        font-family: 標楷體;
+        margin-top: 3vw;
+    }
+
+    .output:hover,
+    .output:focus {
+        background-color: red; /* 悬停时的背景色 */
+        box-shadow: 0 0 0.833vw red; /* 10px 轉換為 vw */
+    }
+
+    /* 添加点击动画效果 */
+    .clicked {
+        animation: clickEffect 0.5s;
+    }
+
+    @keyframes clickEffect {
+        0% {
+            background-color: transparent; /* 初始背景色 */
+            box-shadow: none; /* 初始阴影 */
+        }
+        100% {
+            background-color: rgba(255, 255, 255, 0.1); /* 最终背景色 */
+            box-shadow: 0 0 0.833vw rgba(255, 255, 255, 0.5); /* 最终阴影 */
+        }
+    }
+
+    .chart-container {
+        width: 80vw;
+        min-height: 50vw;
+    }
+
+    .chart-section {
+        margin-top: 15vw;
+    }
+}
+
+
+
+/*網站理念*/
+.web-idea {
+    margin-bottom: 6vw;
+    font-size: 1.8vw;
+    margin-bottom: 1.5vw; /* 增加線條下方的間距 */
+}
+
+.DCA-average {
+    margin-bottom: 6vw;
+}
+
+.bitcoinsnow {
+    margin-top: 1.5vw; /* 將像素值轉換為 VW */
+    margin-left: 4.5vw; /* 將像素值轉換為 VW */
+    margin-bottom: 1.5vw; /* 將像素值轉換為 VW */
+    display: inline-block;
+}
+
+
+.many-button {
+    margin-top: 10.42vw; /* 80px 轉換為 vw */
+    margin-bottom: 2.08vw; /* 20px 轉換為 vw */
+    margin-right: 9.6vw; /* 120px 轉換為 vw */
+    align-items: left;
+    margin-left: 9.6vw; /* 120px 轉換為 vw */
+}
+
+.title-web,
+.title-bitcoin-introduction,
+.title-DCA,
+.title-explanation,
+.message {
+    font-size: 4.5vw; /* 48px 轉換為 vw */
+    color: yellow;
+}
+
+.What-is-DCA-average {
+    text-align: left;
+    margin-bottom: 5.2vw; /* 40px 轉換為 vw */
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+}
+
+.DCA-average ul{
+    font-size: 1.8vw;
+}
+
+.DCA-average p{
+    font-size: 1.8vw;
+}
+
+.student,
+.worker,
+.invenstor {
+    border-radius: 50%;
+    width: 21vw; /* 300px 轉換為 vw */
+    height: 21vw; /* 300px 轉換為 vw */
+    object-fit: cover;
+    align-items: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.text-student,
+.text-worker,
+.text-invenstor {
+    text-align: center;
+    max-width: 24vw; /* 300px 轉換為 vw */
+    width: 100%;
+    font-size: 4.17vw; /* 36px 轉換為 vw */
+    display: inline-block;
+}
+
+.DCA-img{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.student-container,
+.worker-container,
+.investor-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.bitcoin-introduction {
+    margin-bottom: 5.2vw; /* 40px 轉換為 vw */
+    font-size: 1.8vw; /* 24px 轉換為 vw */
+}
+
+.yitai,
+.liter,
+.ray,
+.cash,
+.poka {
+    border-radius: 50%;
+    width: 13.33333vw; /* 200px 轉換為 vw */
+    height: 13.33333vw; /* 200px 轉換為 vw */
+    margin-right: 6.25vw; /* 50px 轉換為 vw */
+}
+
+.text-container,
+.text-liter-container,
+.text-ray-container,
+.text-cash-container,
+.text-poka-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container h2,
+.text-liter-container h2,
+.text-ray-container h2,
+.text-cash-container h2,
+.text-poka-container h2 {
+    margin-top: -0.41667vw; /* -5px 轉換為 vw */
+    color: yellow;
+}
+
+.text-container h3,
+.text-liter-container h3,
+.text-ray-container h3,
+.text-cash-container h3,
+.text-poka-container h3 {
+    align-items: center;
+}
+
+.yitai-container,
+.liter-container,
+.ray-container,
+.cash-container,
+.poka-container {
+    font-family: 標楷體;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw; /* 50px 轉換為 vw */
+    margin-left: 0.83333vw; /* 10px 轉換為 vw */
+    margin-bottom: 2.08333vw; /* 20px 轉換為 vw */
+}
+
+.message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-container form{
+    font-size: 1.8vw;
+}
+
+.message-container form div{
+    font-size: 1.8vw;
+}
+
+
+.message-container,
+.message-container2,
+.message-container3 {
+    font-family: 標楷體;
+}
+
+.message-container3 fieldset {
+    margin-top: 2.08333vw; /* 20px 轉換為 vw */
+    border-radius: 3%;
+    flex-direction: column;
+    width: 100%;
+    min-width: 80vw; /* 400px 轉換為 vw */
+    max-height: 43.75vw; /* 700px 轉換為 vw */
+    margin-bottom: 2.08333vw; /* 20px 轉換為 vw */
+    border-color: black;
+}
+
+.blockchain,
+.news,
+.invenst {
+    border-radius: 50%;
+    height: 8.3vw; /* 100px 轉換為 vw */
+    width: 8.3vw; /* 100px 轉換為 vw */
+}
+
+.block-blockchain,
+.news-news,
+.invenst-invenst {
+    font-family: 標楷體;
+    display: flex;
+    margin-top: 4vw; /* 80px 轉換為 vw */
+}
+
+.block-blockchain h1,
+.news-news h1,
+.invenst-invenst h1 {
+    text-align: center;
+}
+
+fieldset h2 {
+    color: yellow;
+    text-align: center;
+    font-size: 6vw; /* 48px 轉換為 vw */
+}
+
+.news {
+    border-radius: 50%;
+    height: 13.33vw; /* 100px 轉換為 vw */
+    width: 13.33vw; /* 100px 轉換為 vw */
+}
+
+.news-news {
+    font-family: 標楷體;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw; /* 50px 轉換為 vw */
+    margin-bottom: 1.67vw; /* 20px 轉換為 vw */
+}
+
+.news-news h1 {
+    text-align: center;
+}
+
+.invenst {
+    border-radius: 50%;
+    height: 13.33vw; /* 100px 轉換為 vw */
+    width: 13.33vw; /* 100px 轉換為 vw */
+}
+
+.invenst-invenst {
+    font-family: 標楷體;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw; /* 50px 轉換為 vw */
+    margin-left: 0.83vw; /* 10px 轉換為 vw */
+    margin-bottom: 1.67vw; /* 20px 轉換為 vw */
+}
+
+.invenst-invenst h1 {
+    text-align: center;
+
+}
+
+a h1{
+color:white
+}
+
+/* 去掉链接的下划线 */
+a {
+text-decoration: none;
+}
+
+/* 悬停在链接上时显示虚线 */
+a h1:hover {
+text-decoration: underline;
+color: white;
+}
+
+h3 a:hover{
+text-decoration: underline;
+color: yellow;
+}
+
+.text-bitcoin-introduction {
+    margin-bottom: 10.42vw; /* 80px 轉換為 vw */
+    font-size: 3vw; /* 24px 轉換為 vw */
+    margin-top: 10.42vw; /* 80px 轉換為 vw */
+    margin-bottom: 2.08vw; /* 20px 轉換為 vw */
+    align-items: left;
+}
+
+
+.text-DCA-introduction {
+    margin-bottom: 10.42vw; /* 80px 轉換為 vw */
+    font-size: 3vw; /* 24px 轉換為 vw */
+    margin-top: 10.42vw; /* 80px 轉換為 vw */
+    margin-bottom: 2.08vw; /* 20px 轉換為 vw */
+    align-items: left;
+}
+
+
+.form-group input {
+    margin-top: 2.22vw; /* 20px 轉換為 vw */
+}
+
+.comment-section {
+    font-family: 標楷體;
+}
+
+.comment-section fieldset {
+    margin-top: 2.22vw; /* 20px 轉換為 vw */
+    border-radius: 3%;
+    flex-direction: column;
+    width: 60vw; /* 400px 轉換為 vw */
+    max-height: 50vw; /* 600px 轉換為 vw */
+    margin-bottom: 2.22vw; /* 20px 轉換為 vw */
+    border-color: white;
+    align-items: flex-start;
+    overflow-y: auto; /* 或者使用 overflow: scroll; */
+    color: yellow;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-section,
+.message-container3 {
+    border-radius: 3%;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.comment-section {
+    margin-right: 2.78vw; /* 20px 轉換為 vw */
+}
+
+
+
+.message-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
