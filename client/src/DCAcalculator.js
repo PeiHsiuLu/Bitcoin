@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DCACalculator = ({ onDateChange }) => {
+const DCACalculator = ({ onDateChange, onFrequencyChange }) => {
     const today = new Date().toISOString().slice(0, 10);
+    const maxStartDate = '2017-08-20';
     const [investmentAmount, setInvestmentAmount] = useState('');
     const [frequency, setFrequency] = useState('daily');
-    const [startDate, setStartDate] = useState('2021-01-01');
+    const [startDate, setStartDate] = useState(maxStartDate);
     const [endDate, setEndDate] = useState(today);
     const [totalReturnRate, setTotalReturnRate] = useState(null);
     const [netIncome, setNetIncome] = useState(null);
     const [totalInvestment, setTotalInvestment] = useState(null);
     const [finalAmount, setFinalAmount] = useState(null);
-    const fetchKlineData = async (symbol, interval, startDate, endDate, limit = 500) => {
+
+    const fetchKlineData = async (symbol, interval, startDate, endDate, limit = 1000) => {
         try {
             const startTime = new Date(startDate).getTime();
             const endTime = new Date(endDate).getTime();
@@ -38,33 +40,50 @@ const DCACalculator = ({ onDateChange }) => {
     };
 
     const handleFrequencyChange = (e) => {
-        setFrequency(e.target.value);
+        const newFrequency = e.target.value;
+        setFrequency(newFrequency);
+        onFrequencyChange(newFrequency); // 通知父组件
     };
 
     const handleStartDateChange = (e) => {
         const newStartDate = e.target.value;
-        setStartDate(newStartDate);
-        onDateChange(newStartDate, endDate);  // 通知父组件
+        if (new Date(newStartDate) >= new Date(maxStartDate)) {
+            setStartDate(newStartDate);
+            onDateChange(newStartDate, endDate);  // 通知父组件
+        } else {
+            alert('開始日期不能早於2017-08-20');
+        }
     };
-    
 
     const handleEndDateChange = (e) => {
         const newEndDate = e.target.value;
         setEndDate(newEndDate);
         onDateChange(startDate, newEndDate);  // 通知父组件
     };
+
     const calculateInvestmentReturns = async () => {
+        if (!investmentAmount) {
+            alert('請輸入投入金額');
+            return;
+        }
+
         const investmentDates = getInvestmentDates(startDate, endDate, frequency);
         const totalInvested = investmentDates.length * parseFloat(investmentAmount);
         setTotalInvestment(totalInvested);
+
+        const marketData = await fetchKlineData('BTCUSDT', '1d', startDate, endDate);
+        if (!marketData || marketData.length === 0) {
+            console.error('No market data found for the given range.');
+            return;
+        }
+
         let totalValueAtEnd = 0;
         for (const date of investmentDates) {
-            const marketData = await fetchKlineData('BTCUSDT', '1d', date, date);
-            if (marketData && marketData.length > 0) {
-                const closePrice = parseFloat(marketData[0][4]);
+            const closePrice = getClosePriceForDate(marketData, date);
+            if (closePrice) {
                 totalValueAtEnd += investmentAmount / closePrice;
             } else {
-                console.error(`Invalid market data for date: ${date}`);
+                console.error(`No market data for date: ${date}`);
             }
         }
 
@@ -87,10 +106,16 @@ const DCACalculator = ({ onDateChange }) => {
         calculateInvestmentReturns();
     };
 
+    const getClosePriceForDate = (marketData, date) => {
+        const dateTime = new Date(date).getTime();
+        const candle = marketData.find(c => c[0] === dateTime);
+        return candle ? parseFloat(candle[4]) : null;
+    };
+
     return (
         <div className="calculator-container">
-            <form onSubmit={handleSubmit} >
-                <fieldset className="calculator-fieldset" >
+            <form onSubmit={handleSubmit}>
+                <fieldset className="calculator-fieldset">
                     <legend>神奇的DCA計算器</legend>
                     <div className="form-group">
                         <label htmlFor="investmentAmount">投入金額(台幣)</label>
@@ -143,7 +168,6 @@ const DCACalculator = ({ onDateChange }) => {
                     <p>總報酬率: {totalReturnRate ? `${totalReturnRate}%` : '---'}</p>
                 </fieldset>
             </form>
-            
         </div>
     );
 };
