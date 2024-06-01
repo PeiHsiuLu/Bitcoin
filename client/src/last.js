@@ -8,7 +8,7 @@ function UserForum() {
 
     // 从服务器获取消息
     useEffect(() => {
-        Axios.get('http://localhost:3000/messages')
+        Axios.get('http://localhost:3001/messages') // 更改端口為3001
             .then(response => {
                 setMessages(response.data);
             })
@@ -16,7 +16,7 @@ function UserForum() {
                 console.error('Error fetching messages:', error);
             });
     }, []);
-
+    
     const handleMessageSubmit = (e) => {
         e.preventDefault();
         let messageInput = e.target.message.value;
@@ -31,8 +31,8 @@ function UserForum() {
                 isLiked: false,
                 replies: [],
             };
-
-            Axios.post('http://localhost:3000/messages', newMessage)
+    
+            Axios.post('http://localhost:3001/messages', newMessage) // 更改端口為3001
                 .then(response => {
                     setMessages([...messages, response.data]);
                     e.target.reset();
@@ -42,14 +42,14 @@ function UserForum() {
                 });
         }
     };
-
+    
     const handleLike = (index) => {
         const updatedMessages = [...messages];
         const updatedMessage = { ...updatedMessages[index], isLiked: !updatedMessages[index].isLiked };
         updatedMessages[index] = updatedMessage;
-
+    
         // 发送更新后的按赞状态到服务器
-        Axios.put(`http://localhost:3000/messages/${updatedMessage._id}`, updatedMessage)
+        Axios.put(`http://localhost:3001/messages/${updatedMessage._id}`, updatedMessage) // 更改端口為3001
             .then(response => {
                 setMessages(updatedMessages);
             })
@@ -57,7 +57,7 @@ function UserForum() {
                 console.error('Error updating message:', error);
             });
     };
-
+    
     const handleReplySubmit = (e, index) => {
         e.preventDefault();
         const replyText = replyTexts[index] || '';
@@ -67,12 +67,12 @@ function UserForum() {
                 message: replyText,
                 timestamp: new Date().toLocaleString(),
             };
-
+    
             const updatedMessages = [...messages];
             updatedMessages[index].replies.push(newReply);
-
+    
             // 发送更新后的消息到服务器
-            Axios.put(`http://localhost:3000/messages/${updatedMessages[index]._id}`, updatedMessages[index])
+            Axios.put(`http://localhost:3001/messages/${updatedMessages[index]._id}`, updatedMessages[index]) // 更改端口為3001
                 .then(response => {
                     setMessages(updatedMessages);
                     setReplyTexts({ ...replyTexts, [index]: '' });
@@ -82,6 +82,7 @@ function UserForum() {
                 });
         }
     };
+    
 
     const handleReplyChange = (e, index) => {
         setReplyTexts({ ...replyTexts, [index]: e.target.value });

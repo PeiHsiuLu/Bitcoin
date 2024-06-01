@@ -16,31 +16,33 @@ const App = () => {
     endDate: today,
   });
   const [frequency, setFrequency] = useState('daily');
+  const [crypto, setCrypto] = useState('BTC');
 
-  // 處理滾動的函數，確保導航到正確的頁面部分
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
   };
 
-  // 處理從 DCACalculator 組件接收到的日期變化
   const handleDateChange = (startDate, endDate) => {
     setChartRange({ startDate, endDate });
   };
 
-  // 處理從 DCACalculator 組件接收到的頻率變化
   const handleFrequencyChange = (newFrequency) => {
     setFrequency(newFrequency);
   };
 
+  const handleCryptoChange = (newCrypto) => {
+    setCrypto(newCrypto);
+  };
+
   return (
     <div className="App">
-      <img className="bitcoinsnow" src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/%E6%96%B0%E6%AF%94%E7%89%B9%E9%9B%AA%E7%90%83.png" alt="比特雪球图片" width="200vw" height="100vw"></img>
+      <img className="bitcoinsnow" src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/%E6%96%B0%E6%AF%94%E7%89%B9%E9%9B%AA%E7%90%83.png" alt="比特雪球圖片" width="200vw" height="100vw" />
       <div className="main">
         <Navbar scrollToSection={scrollToSection} />
         <div className="app-container">
-          <DCACalculator onDateChange={handleDateChange} onFrequencyChange={handleFrequencyChange} />
+          <DCACalculator onDateChange={handleDateChange} onFrequencyChange={handleFrequencyChange} crypto={crypto} onCryptoChange={handleCryptoChange} />
           <div className="chart-section">
-            <BitcoinPriceChart range={chartRange} frequency={frequency} />
+            <BitcoinPriceChart range={chartRange} frequency={frequency} crypto={crypto} />
           </div>
         </div>
         <section id="philosophy"> <WebsitePhilosophy /></section>

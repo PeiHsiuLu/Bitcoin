@@ -14,7 +14,6 @@ import {
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
-// 註冊 ChartJS 所需的組件
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,8 +25,9 @@ ChartJS.register(
   TimeScale
 );
 
-const BitcoinPriceChart = ({ range, frequency }) => {
+const BitcoinPriceChart = ({ range, frequency, crypto }) => {
   const [chartData, setChartData] = useState({ datasets: [] });
+  const [realTimePrice, setRealTimePrice] = useState(null);
 
   const calculateBarSize = (frequency) => {
     if (frequency === 'daily') {
@@ -39,10 +39,10 @@ const BitcoinPriceChart = ({ range, frequency }) => {
     } else if (frequency === 'monthly') {
       return '1M';
     }
-    return '1d'; // 默認為每天
+    return '1d';
   };
 
-  const fetchHistoricalData = async (interval, startTime, endTime) => {
+  const fetchHistoricalData = async (interval, startTime, endTime, symbol) => {
     const limit = 1000;
     let allData = [];
     let fetchMoreData = true;
@@ -51,7 +51,7 @@ const BitcoinPriceChart = ({ range, frequency }) => {
     while (fetchMoreData) {
       const response = await axios.get('https://api.binance.com/api/v3/klines', {
         params: {
-          symbol: 'BTCUSDT',
+          symbol: symbol,
           interval: interval,
           startTime: currentStartTime,
           endTime: endTime,
@@ -74,19 +74,34 @@ const BitcoinPriceChart = ({ range, frequency }) => {
     }));
   };
 
+  const fetchRealTimePrice = async (symbol) => {
+    try {
+      const response = await axios.get('https://api.binance.com/api/v3/ticker/price', {
+        params: {
+          symbol: symbol
+        }
+      });
+      setRealTimePrice(response.data.price);
+    } catch (error) {
+      console.error('Error fetching real-time price:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const interval = calculateBarSize(frequency);
         const startTime = new Date(range.startDate).getTime();
         const endTime = new Date(range.endDate).getTime();
+        const symbol = crypto === 'BTC' ? 'BTCUSDT' : crypto === 'ETH' ? 'ETHUSDT' : 'ADAUSDT';
 
-        const candleData = await fetchHistoricalData(interval, startTime, endTime);
+        const candleData = await fetchHistoricalData(interval, startTime, endTime, symbol);
+        await fetchRealTimePrice(symbol);
 
         setChartData({
           datasets: [
             {
-              label: `BTC-USD Historical (${interval})`,
+              label: `${crypto}-USD Historical (${interval})`,
               data: candleData,
               borderColor: 'rgb(33, 150, 243)',
               backgroundColor: 'rgba(33, 150, 243, 0.5)',
@@ -100,7 +115,7 @@ const BitcoinPriceChart = ({ range, frequency }) => {
     };
 
     fetchData();
-  }, [range, frequency]);
+  }, [range, frequency, crypto]);
 
   const options = {
     responsive: true,
@@ -130,13 +145,14 @@ const BitcoinPriceChart = ({ range, frequency }) => {
       },
       title: {
         display: true,
-        text: 'Historical Bitcoin Price',
+        text: `Historical ${crypto} Price`,
       },
     },
   };
 
   return (
     <div className="chart-container">
+      {realTimePrice && <div className="real-time-price">Current {crypto} Price: ${parseFloat(realTimePrice).toFixed(2)}</div>}
       <Line options={options} data={chartData} />
     </div>
   );
