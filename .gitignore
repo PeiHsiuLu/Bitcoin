@@ -1,6 +1,4 @@
 .vscode/
-dist/
-build/
 *.log
 *.tmp
 .DS_Store
