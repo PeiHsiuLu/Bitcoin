@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>比特雪球DCA4.0</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-size: 18px;
+            margin: 0;
+            font-family: 標楷體;
+        }
+        /* 樣式設定 */
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: auto;
+            overflow-y: hidden;
+            width: 100%;
+            padding: 10px 0;
+            max-width: 1250px;
+            margin-left: 120px;
+            align-items: center;
+        }
+        .nav-scroller .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            gap: 44.899998473px;
+            padding: 0 10px;
+        }
+        .nav-item {
+            font-size: 24px;
+            padding: 6px 40px;
+            border: 2px solid white;
+            transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.1);
+    color: #ffcc00;
+            border-radius: 5px;
+            font-family: 標楷體;
+        }
+        .nav-item:hover,
+        .nav-item:focus {
+            border-color: #ffffff;
+    background-color: white;
+            color: black;
+        }
+        
+        .card {
+            border: none;
+        }
+        .card-header {
+            text-align: left;
+        }
+        /* 新增的 CSS */
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+            overflow-x: auto;
+        }
+        .calculator-fieldset {
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            font-size: 24px;
+            height: 390px;
+            margin-left: 100px;
+            margin-bottom: 20px;
+        }
+        .calculator-fieldset legend {
+            font-size: 18px; /* 與 DCA Settings 字體大小相同 */
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 24px; /* 放大字體大小 */
+        }
+        .calculator-fieldset label {
+            font-size: 24px; /* 放大字體大小 */
+        }
+        .calculator-fieldset select,
+        .calculator-fieldset input[type="number"] {
+            font-size: 24px; /* 放大字體大小 */
+            font-family: 標楷體;
+        } 
+        .form-group {
+            margin-bottom: 10px; /* 增加间距至 20px */
+            margin-top: 20px;
+        }
+        .form-group:last-child {
+        margin-bottom: 10px; /* 增加最后一个 form-group 的间距至 40px */
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-group-text {
+            margin: 0 5px;
+        }
+        /* 讓所有 label 字體大小相同 */
+        label {
+            font-size: 18px; /* 與 DCA Settings 字體大小相同 */
+        }
+        legend{
+            text-align: center;
+            font-size: 24px;
+        }
+        .output-container {
+            margin-top: 10px;
+            align-items: left;
+            margin-left:155px;
+            margin-bottom: 20px;
+            width:100%;
+            max-width: 400px;
+        }
+        .output {
+            color: white;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 15px 60px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
+            font-family: 標楷體;
+        }
+        .output:hover,
+        .output:focus {
+        background-color: red; /* 悬停时的背景色 */
+        box-shadow: 0 0 10px red; /* 悬停时的阴影 */
+        }
+      /* 添加点击动画效果 */
+.clicked {
+    animation: clickEffect 0.5s;
+}
+@keyframes clickEffect {
+    0% {
+        background-color: transparent; /* 初始背景色 */
+        box-shadow: none; /* 初始阴影 */
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.1); /* 最终背景色 */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* 最终阴影 */
+    }
+}
+    
+.web-idea{
+    margin-bottom: 80px;
+    font-size: 24px;
+}
+.DCA-average{
+    margin-bottom: 80px;
+}
+.bitcoinsnow{
+    margin-top: 20px;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            display: inline-block;
+}
+.sugar {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 20px; /* 圖片右邊的間距 */
+    margin-left: -5px;
+}
+.ainsley{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 20px; /* 圖片右邊的間距 */
+    margin-left: -5px;
+    
+}
+.introductionsugar{
+    display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 300px; /* 這裡的寬度可以根據你的需要調整 */
+  
+}
+.introductionsugar h1 {
+    margin-top: -7px; /* 适当调整这个数值 */
+    margin-left: 100px;
+    margin-bottom:-10px;
+}
+.introductionainsley{
+    display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 300px; /* 這裡的寬度可以根據你的需要調整 */
+  
+}
+.introductionainsley h1 {
+    margin-top: -7px; /* 适当调整这个数值 */
+    margin-bottom: -10px;
+    margin-left: 100px;
+}
+.text-sugar{
+    margin-bottom: 20px;
+    display: inline-block
+}
+.introductionsugar h3{
+    display: inline-block
+}
+.text-sugar h3 {
+            width: 700px; /* 設定文字寬度 */
+            display: inline-block; /* 讓文字橫向排列 */
+            margin-left: 100px;
+        }
+.text-ainsley{
+    margin-bottom: 20px;
+    display: inline-block
+}
+.introductionainsley h3{
+    display: inline-block
+}
+.text-ainsley h3 {
+            width: 700px; /* 設定文字寬度 */
+            display: inline-block; /* 讓文字橫向排列 */
+            margin-left: 100px;
+        }
+a{
+    color:yellow;
+}
+.founder{
+    width:100%;
+    max-width: 1200px;
+    font-size: 48px;
+    color: yellow;
+}
+hr{
+    border-top: 1px solid white;
+            margin-top: 80px; /* 調整線條上方的間距 */
+            width: 100%;
+            max-width: 1250px;
+            align-items: left;
+            margin-left: 120px;
+}
+.many-button{
+    margin-top: 80px; /* 調整線條上方的間距 */
+            margin-bottom: 20px; /* 增加線條下方的間距 */
+            width: 100%;
+            max-width: 1250px;
+            align-items: left;
+            margin-left: 120px;
+}
+.title-web{
+    font-size: 48px;
+    color: yellow;
+}
+.title-bitcoin-introduction{
+    font-size: 48px;
+    color: yellow;
+}
+.title-DCA{
+    font-size: 48px;
+    color: yellow;
+}
+.title-explanation{
+    font-size: 48px;
+    color: yellow;
+}
+.What-is-DCA-average{
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+.student {
+    border-radius: 50%; /* 將圖片的邊角裁剪成圓形 */
+    width: 300px; /* 調整圖片的寬度 */
+    height: 300px; /* 調整圖片的高度 */
+    object-fit: cover; /* 確保圖片能夠填滿圓形的範圍 */
+    align-items: left;
+    display: inline-block; /* 讓圖片在同一行上 */
+    vertical-align: middle; /* 垂直置中對齊 */
+    margin-right: 150px;
+}
+.worker {
+    border-radius: 50%; /* 將圖片的邊角裁剪成圓形 */
+    width: 300px; /* 調整圖片的寬度 */
+    height: 300px; /* 調整圖片的高度 */
+    object-fit: cover; /* 確保圖片能夠填滿圓形的範圍 */
+    align-items: left;
+    display: inline-block; /* 讓圖片在同一行上 */
+    vertical-align: middle; /* 垂直置中對齊 */
+    margin-right: 150px;
+}
+.invenstor{
+    border-radius: 50%; /* 將圖片的邊角裁剪成圓形 */
+    width: 300px; /* 調整圖片的寬度 */
+    height: 300px; /* 調整圖片的高度 */
+    object-fit: cover; /* 確保圖片能夠填滿圓形的範圍 */
+    align-items: left;
+    display: inline-block; /* 讓圖片在同一行上 */
+    vertical-align: middle; /* 垂直置中對齊 */
+}
+.text-student{
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    font-size: 36px;
+    display: inline-block;
+}
+.text-worker{
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    font-size: 36px;
+    margin-right: 150px;
+    margin-left: 150px;
+    display: inline-block;
+}
+.text-invenstor{
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    font-size: 36px;
+    display: inline-block;
+}
+.bitcoin-introduction{
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+/*乙太幣*/
+.yitai{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 50px; /* 圖片右邊的間距 */
+}
+.text-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 1000px;
+}
+.text-container h2 {
+    margin-top: -5px;
+    color:yellow;
+}
+.text-container h3 {
+   align-items: center;
+}
+.yitai-container{
+   font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 1250px; /* 這裡的寬度可以根據你的需要調整 */
+}
+/*萊特幣*/
+.liter{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 50px; /* 圖片右邊的間距 */
+}
+.text-liter-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 1000px;
+}
+.text-liter-container h2 {
+    margin-top: -5px;
+    color:yellow;
+}
+.text-liter-container h3 {
+   align-items: center;
+}
+.liter-container{
+   font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 1250px; /* 這裡的寬度可以根據你的需要調整 */
+}
+/*瑞波幣*/
+.ray{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 50px; /* 圖片右邊的間距 */
+}
+.text-ray-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 1000px;
+}
+.text-ray-container h2 {
+    margin-top: -5px;
+    color:yellow;
+}
+.text-ray-container h3 {
+   align-items: center;
+}
+.ray-container{
+   font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 1250px; /* 這裡的寬度可以根據你的需要調整 */
+}
+/*比特幣現金*/
+.cash{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 50px; /* 圖片右邊的間距 */
+}
+.text-cash-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 1000px;
+}
+.text-cash-container h2 {
+    margin-top: -5px;
+    color:yellow;
+}
+.text-cash-container h3 {
+   align-items: center;
+}
+.cash-container{
+   font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 1250px; /* 這裡的寬度可以根據你的需要調整 */
+}
+/*波卡*/
+.poka{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 50px; /* 圖片右邊的間距 */
+}
+.text-poka-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 1000px;
+}
+.text-poka-container h2 {
+    margin-top: -5px;
+    color:yellow;
+}
+.text-poka-container h3 {
+   align-items: center;
+}
+.poka-container{
+   font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    width: 1250px; /* 這裡的寬度可以根據你的需要調整 */
+    margin-bottom:100px ;
+}
+
+.message{
+    text-align: left;
+    font-size: 72px;
+    color: yellow;
+    margin-bottom: 25px;
+    margin-left: 120px;
+}
+
+.message-container{
+    font-family: 標楷體;
+
+}
+
+.message-container fieldset{
+    margin-top: 20px;
+    border-radius: 3%;
+    flex-direction: column;
+    margin-left: 1030px;
+    width: 100%;
+    max-width: 400px;
+    min-height:500px ;
+    height: auto;
+    margin-bottom: 20px;
+    border-color: black;
+}
+
+.blockchain{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.block-blockchain{
+    font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.block-blockchain h1{
+    text-align:center ;
+    margin-left: 60px;
+}
+
+fieldset h2{
+    color:yellow;
+    text-align: center;
+    font-size: 48px;
+}
+
+.news{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.news-news{
+    font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.news-news h1{
+    text-align:center ;
+    margin-left: 70px;
+}
+
+.invenst{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.invenst-invenst{
+    font-family: 標楷體;
+   display: flex;
+    align-items: top;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.invenst-invenst h1{
+    text-align:center ;
+    margin-left: 70px;
+}
+
+a h1{
+    color:white
+}
+
+/* 去掉链接的下划线 */
+a {
+        text-decoration: none;
+    }
+
+    /* 悬停在链接上时显示虚线 */
+    a h1:hover {
+        text-decoration: underline;
+        color: white;
+    }
+
+    h3 a:hover{
+        text-decoration: underline;
+        color: yellow;
+    }
+
+</style>
+</head>
+<body>
+        <img class=bitcoinsnow src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/%E6%96%B0%E6%AF%94%E7%89%B9%E9%9B%AA%E7%90%83.png" alt="比特雪球图片" width="200px" height="100px">
+    <main>
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+            <nav class="nav nav-underline justify-content-between">
+                <button class="nav-item nav-link link-button" onclick="創辦人()"><strong>創辦人</strong></button>
+                <button class="nav-item nav-link link-button" onclick="網站理念()"><strong>網站理念</strong></button>
+                <button class="nav-item nav-link link-button" onclick="比特幣介紹()"><strong>比特幣介紹</strong></button>
+                <button class="nav-item nav-link link-button" onclick="DCA平均成本法介紹()"><strong>DCA平均成本法介紹</strong></button>
+                <button class="nav-item nav-link link-button" onclick="用戶論壇()"><strong>用戶論壇</strong></button>
+            </nav>
+        </div>
+
+        <!-- 新的計算器部分 -->
+        <div class="calculator-container">
+            <fieldset class="calculator-fieldset">
+                <legend>神奇的DCA計算器</legend>
+                <!-- 購買金額 -->            
+                    <div class="input-group">
+                        <label>投入金額</label>
+                    </div>
+                        <span class="input-group-text">$</span>
+                        <input name="amountSubunits" placeholder="" min="1" max="10000" step="1" type="number" class="form-control-lg form-control" value="10">
+                        <span class="input-group-text">.00</span>
+                    
+                <!-- 重複購買 -->
+                <div class="form-group">
+                    <label>頻率</label>
+                </div>
+                    <select name="frequency" class="form-control-lg form-control">
+                        <option value="daily">每天</option>
+                        <option value="weekly">每周</option>
+                        <option value="every_two_weeks">每兩個星期</option>
+                        <option value="monthly">每個月</option>
+                    </select>
+                <!-- 開始年月日 -->
+                <div class="form-group">
+                    <label>開始年月日</label>
+                </div>
+                <div>
+                    <select name="start year" class="form-control-lg form-control">
+                        <option value="2010_year">2010</option>
+                        <option value="2011_year">2011</option>
+                        <option value="2012_year">2012 </option>
+                        <option value="2013_year">2013 </option>
+                        <option value="2014_year"> 2014</option>
+                        <option value="2015_year">2015 </option>
+                        <option value="2016_year">2016 </option>
+                        <option value="2017_year">2017</option>
+                        <option value="2018_year">2018</option>
+                        <option value="2019_year">2019</option>
+                        <option value="2020_year">2020</option>
+                        <option value="2021_year">2021</option>
+                        <option value="2022_year">2022</option>
+                        <option value="2023_year">2023</option>
+                    </select>
+                    <label>年</label>
+                    <select name="start month" class="form-control-lg form-control">
+                        <option value="1_month">1</option>
+                        <option value="2_month">2</option>
+                        <option value="3_month">3 </option>
+                        <option value="4_month">4 </option>
+                        <option value="5_month"> 5</option>
+                        <option value="6_month">6 </option>
+                        <option value="7_month">7 </option>
+                        <option value="8_month">8</option>
+                        <option value="9_month">9</option>
+                        <option value="10_month">10</option>
+                        <option value="11_month">11</option>
+                        <option value="12_month">12</option>
+                    </select>
+                    <label>月</label>
+                    <select name="start day" class="form-control-lg form-control">
+                        <option value="1_day">1</option>
+                        <option value="2_day">2</option>
+                        <option value="3_day">3</option>
+                        <option value="_day">4</option>
+                        <option value="_day">5</option>
+                        <option value="_day">6</option>
+                        <option value="_day">7</option>
+                        <option value="_day">8</option>
+                        <option value="_day">9</option>
+                        <option value="_day">10</option>
+                        <option value="_day">11</option>
+                        <option value="_day">12</option>
+                        <option value="_day">13</option>
+                        <option value="_day">14</option>
+                        <option value="_day">15</option>
+                        <option value="_day">16</option>
+                        <option value="_day">17</option>
+                        <option value="_day">18</option>
+                        <option value="_day">19</option>
+                        <option value="_day">20</option>
+                        <option value="_day">21</option>
+                        <option value="_day">22</option>
+                        <option value="_day">23</option>
+                        <option value="_day">24</option>
+                        <option value="_day">25</option>
+                        <option value="_day">26</option>
+                        <option value="_day">27</option>
+                        <option value="_day">28</option>
+                        <option value="_day">29</option>
+                        <option value="_day">30</option>
+                        <option value="_day">31</option>
+                    </select><label>日</label>
+                </div>
+                    
+                
+                <!-- 結束年月日 -->
+                <div class="form-group">
+                    <label>結束年月日</label>
+                </div>
+                <div>
+                    <select name="end date" class="form-control-lg form-control">
+                        <option value="2010_year">2010</option>
+                        <option value="2011_year">2011</option>
+                        <option value="2012_year">2012 </option>
+                        <option value="2013_year">2013 </option>
+                        <option value="2014_year">2014</option>
+                        <option value="2015_year">2015 </option>
+                        <option value="2016_year">2016 </option>
+                        <option value="2017_year">2017</option>
+                        <option value="2018_year">2018</option>
+                        <option value="2019_year">2019</option>
+                        <option value="2020_year">2020</option>
+                        <option value="2021_year">2021</option>
+                        <option value="2022_year">2022</option>
+                        <option value="2023_year">2023</option>
+                    </select>
+                    <label>年</label>
+                    <select name="start month" class="form-control-lg form-control">
+                        <option value="1_month">1</option>
+                        <option value="2_month">2</option>
+                        <option value="3_month">3 </option>
+                        <option value="4_month">4 </option>
+                        <option value="5_month"> 5</option>
+                        <option value="6_month">6 </option>
+                        <option value="7_month">7 </option>
+                        <option value="8_month">8</option>
+                        <option value="9_month">9</option>
+                        <option value="10_month">10</option>
+                        <option value="11_month">11</option>
+                        <option value="12_month">12</option>
+                    </select>
+                    <label>月</label>
+                    <select name="start day" class="form-control-lg form-control">
+                        <option value="1_day">1</option>
+                        <option value="2_day">2</option>
+                        <option value="3_day">3</option>
+                        <option value="_day">4</option>
+                        <option value="_day">5</option>
+                        <option value="_day">6</option>
+                        <option value="_day">7</option>
+                        <option value="_day">8</option>
+                        <option value="_day">9</option>
+                        <option value="_day">10</option>
+                        <option value="_day">11</option>
+                        <option value="_day">12</option>
+                        <option value="_day">13</option>
+                        <option value="_day">14</option>
+                        <option value="_day">15</option>
+                        <option value="_day">16</option>
+                        <option value="_day">17</option>
+                        <option value="_day">18</option>
+                        <option value="_day">19</option>
+                        <option value="_day">20</option>
+                        <option value="_day">21</option>
+                        <option value="_day">22</option>
+                        <option value="_day">23</option>
+                        <option value="_day">24</option>
+                        <option value="_day">25</option>
+                        <option value="_day">26</option>
+                        <option value="_day">27</option>
+                        <option value="_day">28</option>
+                        <option value="_day">29</option>
+                        <option value="_day">30</option>
+                        <option value="_day">31</option>
+                    </select><label>日</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="output-container">
+            <button class="output" onclick="輸出結果(this)"><legend>輸出結果</legend></button>
+        </div>
+    </main>
+    <hr>
+    
+    <div class="many-button">
+        <h1 class="founder">創辦人</h1>
+        <br>
+            <div class="introductionsugar">
+                <img class="sugar" src="https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/383253472_1338509500405569_7439051569552832836_n.jpg?raw=true">
+                <div class="text-sugar">
+                    <h1>修哥</h1>
+                    <h3><p>前端網站設計發想人，本身是個浪漫的理想主義者，總是想要呼之欲出，將源源不絕的想像力與創造力分享出去。</p> 
+                        <p>--- 雖然不是藝術家，但我是網頁設計師 ---</p>
+                        <a href="https://peihsiulu.github.io/HW1/">修哥的個人網站</a>
+                    </h3>
+                </div>
+            </div>
+    <div class="introductionainsley">
+            <img class="ainsley" src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/786ca0cedbe455e16c741f8b07f34231aaf63911/A.jpg">
+                <div class="text-ainsley">     
+                    <h1>Ainsley</h1>
+                    <h3><p>後端動態網站的創作人，腦海總是能源源不絕地湧出想法，即便與別人不一樣，也還是要做最不同凡響的那位。</p>
+                         <p>--- 生命有限，但是腦海的創意總是無限 ---</p>
+                         <a href="https://nrps9909.github.io/41171214h/">Ainsley的個人網站</a></h3>
+                         <script>
+                            function 創辦人() {
+                            // 找到目标元素
+                            const 創辦人元素 = document.querySelector('.founder');
+                            
+                            // 滚动到目标元素所在的位置
+                            創辦人元素.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        </script>
+                         <script>
+                            function 網站理念() {
+                            // 找到目标元素
+                            const 網站理念元素 = document.querySelector('.title-web');
+                            
+                            // 滚动到目标元素所在的位置
+                            網站理念元素.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        </script>
+                </div>
+           
+    </div>
+    <br>
+        <h1 class="title-web"><strong>網站理念</strong></h1>
+        <div class="web-idea"><p>我們對比特幣這個虛擬貨幣在市場上的發展深感興趣，特別是 — Ainsley，在成立比特幣 DCA 網站之前，已經深耕比特幣市場多年。隨著近期虛擬貨幣投資熱潮不斷高漲，比特幣更成為投資者心中的首選。</p>
+             
+            <p>然而，投資並非人人都能夠掌握，特別是對於新手和初學者而言，常常遭遇到的問題是不知從何入手。或者因為對於這個領域不夠瞭解，只好盲目跟隨投資老師的建議，卻往往陷入空手而回的窘境。有鑑於此，我們兩位網站創作者 — 修哥與 Ainsley，共同決定建立比特幣 DCA 網站，旨在協助使用者預測比特幣未來的發展。我們希望使用者能夠透過這個平台，更有效地應對未來的投資挑戰，藉此顯著提升其投資報酬率。 </p>
+            
+            <P>我們希望透過這個平台，為投資者提供更可靠的指引，使他們能夠更有信心地在虛擬貨幣市場應退自如，大放異彩！</p></div>
+        
+            <h1 class="title-bitcoin-introduction"><strong>比特幣介紹</strong></h1>
+            <div class="bitcoin-introduction">
+                <h2>比特幣是什麼？</h2>
+                <P>比特幣是第一個加密貨幣，由化名創建者中本聰於 2009 年創建。在幣圈，有些人另外給它取了一個暱稱叫做「大餅」，因為市值龐大，在加密貨幣市場中長期占據優勢。2008 年 11 月，中本聰發表了一篇論文「比特幣: 點對點電子現金系統」，說明他對電子貨幣的最新構想，也讓比特幣一詞首次曝光；接著在 2009 年 1 月，中本聰挖出史上第一個區塊，也就是比特幣創世區塊（Genesis block），宣告比特幣區塊鏈網路正式上線。</P>
+                <br>
+                <h2>運作模式</h2>
+                <P>比特幣的基礎技術被稱為區塊鏈，這是一種記錄使用加密貨幣進行的所有交易的分佈式帳本。每次比特幣交易完成並被節點確認時，它就會被添加到一個數據“塊”中。當一個塊被執行時，它就會被添加到先前塊的鏈中，創建一個永久的、公開的、不可毀壞的所有交易記錄的記錄。</P>
+                <P>比特幣用戶必須使用類似電子信箱的「比特幣錢包」和類似電郵位址的「比特幣位址」。比特幣位址和私鑰形成一對，就像銀行卡號和密碼一樣。比特幣位址類似於銀行卡號，用於追蹤在特定位址上存儲的比特幣數量。使用者可以隨意生成比特幣位址，以便存放比特幣。每個生成的比特幣位址都對應著一個私鑰，這個私鑰證明了使用者對該位址上的比特幣擁有所有權。私鑰就像銀行卡的密碼，只有持有密碼的人才能使用該銀行卡上的資金。因此，在使用比特幣錢包時，妥善保存比特幣位址和對應的私鑰至關重要。</P>
+                <br>
+                <h2>與其他虛擬貨幣相比，比特幣佔據了什麼優勢？</h2>
+                <P>在此之前，先來簡單介紹幾個常見的虛擬貨幣：</P>
+                <br>
+                <div class="yitai-container">
+                    <img class="yitai"src=https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E4%B9%99%E5%A4%AA%E5%B9%A3.jpg?raw=true>
+                    <div class="text-container">
+                        <h2>以太幣</h2>
+                        <h3>作為開放源碼平台，以太坊允許用戶建立和執行智能合約和去中心化應用。它的區塊鏈不僅支持代幣交易，還可進行複雜的程式化操作。</h3>
+                    </div>
+                    
+                    
+                </div>
+                <div class="liter-container">
+                    <img class="liter"src=https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7-2017-12-21-%E4%B8%8A%E5%8D%8810.10.44.jpeg?raw=true>
+                    <div class="text-liter-container">
+                        <h2>萊特幣</h2>
+                        <h3> 與比特幣相似，萊特幣也是一種去中心化的數字貨幣。它的交易速度比比特幣快且費用較低，並採用不同的採礦算法。</h3>
+                    </div>
+                    
+                    
+                </div>
+                <div class="ray-container">
+                    <img class="ray"src=https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E7%91%9E%E6%B3%A2%E5%B9%A3.jpg?raw=true>
+                    <div class="text-ray-container">
+                        <h2>瑞波幣</h2>
+                        <h3>瑞波幣旨在加速跨境付款和資金轉移。它提供快速的交易速度和低成本的國際轉款，並為金融機構提供了解決方案。</h3>
+                    </div>
+                    
+                    
+                </div>
+            
+                <div class="cash-container">
+                    <img class="cash"src=https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E6%AF%94%E7%89%B9%E5%B9%A3%E7%8F%BE%E9%87%91.jpg?raw=true>
+                    <div class="text-cash-container">
+                        <h2>比特幣現金</h2>
+                        <h3> 比特幣現金是比特幣的一個分支，旨在提高比特幣的交易速度和擴容性，以更好地應對日常交易需求。</h3>
+                    </div>
+                    
+                    
+                </div>
+            
+                <div class="poka-container">
+                    <img class="poka"src=https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E6%B3%A2%E5%8D%A1%E5%B9%A3.jpg?raw=true>
+                    <div class="text-poka-container">
+                        <h2>波卡幣</h2>
+                        <h3>波卡是一個跨鏈平台，允許不同的區塊鏈之間實現互操作性和資產轉移。它的目標是打破區塊鏈之間的隔離，實現更大規模的應用。</h3>
+                    </div>
+                    
+                    
+                </div>
+                
+            <p>以上是一些常見的虛擬貨幣介紹，這些貨幣各在虛擬貨幣市場佔有不可忽視的地位。然而，比特幣卻擁有其他虛擬貨幣的特性：</p>
+            <br>
+            <P><li>知名度和市場佔有率： 比特幣是第一個成功實施區塊鏈技術的加密貨幣，因此在市場上享有廣泛知名度和信任。</li></P>
+            <p><li>去中心化和安全性： 比特幣採用去中心化的區塊鏈技術，無需中央機構控制，從而提高了安全性和透明度。</li></p>
+            <p><li>可編程性和開放性： 比特幣是開放源碼的，允許開發者基於其區塊鏈構建各種解決方案和應用。</li></p>
+            <p><li>流動性和接受度： 比特幣在全球范圍內都被廣泛接受，許多交易平臺和商家接受比特幣作為支付方式。</li></p>
+            <p><li>有限供應： 比特幣的供應是有限的，最大供應量為2100萬枚，這意味著不會無限制地增加，有助於維持其價值。</li></p>
+            <br>
+            <p><h3>這些優勢或許也是為什麼即便幣圈的幣種越來越多，比特幣始終能保持幣圈龍頭的地位！</h3></p>
+            <br>
+            </div>
+            <script>
+                function 比特幣介紹() {
+                // 找到目标元素
+                const 比特幣介紹元素 = document.querySelector('.title-bitcoin-introduction');
+                
+                // 滚动到目标元素所在的位置
+                比特幣介紹元素.scrollIntoView({ behavior: 'smooth' });
+            }
+            </script>
+            <h1 class="title-DCA"><strong>DCA平均成本法介紹</strong></h1>
+            <div class="DCA-average">
+                <br>
+                <h1>什麼是DCA平均成本法？</h1>
+                <div class="What-is-DCA-average">
+                    <p>平均成本法的英文是 Dollar Cost Averaging，簡稱 DCA，也就是俗稱的「定投」，是一種定期定量的長期投資策略。採取規律機械式的方式，以固定的周期和金額投入資金，買入特定的資產。其中，定期是指特定的周期，例如每兩周一次、每月一次等等。定量是指特定的金額，例如每次$100、$500、$2000等。這種投資策略的目的主要是為了避免資產波動對投資人最終收益造成的負面影響。</p>
+                    <p>例如說，原先要投資的金額總數有 $120,000，若是採用DCA平均成本法，平均分 12 期投注，每次的投資金額就是$10,000。由於每月股票價格總會有波動，大部分的投資小白的投資情緒容易受到股票市場價格變動影響。所以，相較一次性的投資，分期的DCA平均成本法大大降低了投資的風險。</p>
+                    <br>
+                    <h2>使用DCA平均成本法有什麼優點？</h2> 
+                    <p><li>降低市場投資風險：DCA允許投資者定期投資，不論市價如何變動，投資者都會在市場投入相同的價格，有助於降低市場波動對投資結果的影響。</li></p>
+                    <p><li>操作簡單：只要定期投入資金，無需太多複雜技術、知識。</li></p>
+                    <P><li>適合多數族群：定投與其他投資策略相比，所需的投資技術較低，不需要特別預測市場的高點或低點，大大降低錯誤決策的可能性。</li></P>
+                    <P><li>幫助建立長期投資策略：DCA鼓勵投資者建立規律的投資習慣，無須過度思考市場的市價變化。即便中途有虧損，虧損量也會比一次投入來得少。另外，因為不需要持續盯盤，讓人更容易繼續持有、按照策略執行。</li></P>
+                    <P><li>受歡迎的退休儲蓄方式：各種退休儲蓄計劃經常使用DCA，因為它是一種有效的長期投資策略。</li></P>
+                    <br>
+                    <h2>DCA的計算公式</h2>
+                    <p>或許使用DCA投資策略的優點也可以從DCA的計算公式一探究竟：</p>
+                    <p>每期購買單位 = 投入金額 ÷ 投資總期數(頻率) ÷ 當期資產金額</p>
+                    <p>累積購買單位 = 當期購買單位 ＋ 之前每期購買單位總和</p>
+                    <p>累計資產值 = 累積購買單位 × 當期資產價格</p>
+                    <br>
+                    <p>從這上述列的三個公式，大家應該可以明白為什麼DCA的獲利會比其他投資策略高了吧！如果是一次性的投資，就只能受到市場價格的擺布。</p>
+                    <p>相反的，DCA就只需要顧及累計購買的數量，再在一個可以獲利的時間點賣出就行了，而且獲利的金額甚至也比一次性投入來得更高許多。</p>
+                    <br>
+                <h2>DCA平均成本法適用於哪些族群</h2> 
+                <p><li>學生：一般學生普遍沒有什麼收入，收入主要來自於打工或是家庭，長期少量的定期定額投資恰恰適合學生族群。</li></p>
+                <p><li>一般上班族：上班族平時都必須應付上司交代的業務，幾乎沒有時間研究投資。所以，對於大多數上班族來說，DCA定期定額是個好的投資選擇。</li></p>
+                <p><li>長期投資者：DCA主打長期投資，適合偏好長期投資，不喜歡高風險、短期買賣的投資客。</li></p>
+                <br>
+                <br>
+                <br>
+                <img class=student src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/%E5%AD%B8%E7%94%9F.jpg">
+                <img class="worker" src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/%E4%B8%8A%E7%8F%AD%E6%97%8F.jpg">
+                <img class="invenstor" src="https://raw.githubusercontent.com/PeiHsiuLu/PeiHsiuLu/main/pexels-rdne-stock-project-7413915.jpg">
+                <p class="text-student">學生</p>
+                <p class="text-worker">上班族</p>
+                <p class="text-invenstor">長期投資者</p>
+                
+                
+                
+                
+            </div>
+            </div>
+            <script>
+                function DCA平均成本法介紹() {
+                // 找到目标元素
+                const DCA平均成本法介紹元素 = document.querySelector('.title-DCA');
+                
+                // 滚动到目标元素所在的位置
+                DCA平均成本法介紹元素.scrollIntoView({ behavior: 'smooth' });
+            }
+            </script>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script>
+        function 用戶論壇() {
+        // 找到目标元素
+        const 用戶論壇元素 = document.querySelector('.message');
+
+        // 滚动到目标元素所在的位置
+        用戶論壇元素.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+
+   <div class="message-container">
+    <div class="message">用戶論壇</div>
+    <fieldset>
+        <h2>更多資訊</h2>
+        <div class="block-blockchain">
+            <img class="blockchain"src="https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E5%8D%80%E5%A1%8A%E9%8F%88.jpg?raw=true">
+            <a href="https://blockcast.it/">
+                <h1>幣圈資訊區</h1>
+            </a>
+        </div>
+        <div class="news-news">
+            <img class="news"src="https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E9%8F%88%E6%96%B0%E8%81%9E.jpg?raw=true">
+            <a href="https://abmedia.io/">
+                <h1>幣圈新聞</h1>
+            </a>
+
+        </div>
+        <div class="invenst-invenst">
+            <img class="invenst"src="https://github.com/PeiHsiuLu/PeiHsiuLu/blob/main/%E6%AF%94%E7%89%B9%E5%B9%A3.jpg?raw=true">
+            <a href="https://www.okx.com/hk/join?channelId=ACE520352&msclkid=1f8ff8d5fc2e1938aaae9dbeb0138086">
+                <h1>我要投資</h1>
+            </a>
+
+        </div>
+
+
+    </fieldset>
+
+
+
+
+
+   </div>
+
+
+</body>
+</html>

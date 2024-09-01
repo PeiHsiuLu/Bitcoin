@@ -1,0 +1,678 @@
+/* 總體設定 */
+body {
+    background-color: black;
+    color: white;
+    font-size: 1.8vw;
+    margin: 0;
+    font-family: '標楷體', sans-serif;
+}
+
+.main {
+    margin-left: 8.33vw;
+    margin-right: 8.33vw;
+}
+
+/* 導航欄 */
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: auto;
+    overflow-y: hidden;
+    padding: 0.8vw;
+    align-items: center;
+    margin-top: 1.67vw;
+}
+.nav-scroller .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    gap: 3.67vw;
+    padding: 0 0.83vw;
+}
+.nav-item {
+    font-size: 1.5vw;
+    padding: 0.5vw 3.33vw;
+    border: 0.167vw solid white;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffcc00;
+    border-radius: 0.5vw;
+    font-family: '標楷體', sans-serif;
+}
+.nav-item:hover,
+.nav-item:focus {
+    border-color: #ffffff;
+    background-color: white;
+    color: black;
+}
+
+  
+.link-button,.link-button:focus {
+    background-color: rgba(211, 211, 211, 0.1); /* 預設背景顏色 */
+    color: #ffcc00; /* 預設文字顏色 */
+    transition: background-color 0.3s, color 0.3s; /* 背景顏色和文字顏色過渡效果 */
+  }
+  
+.link-button:hover {
+background-color: rgba(211, 211, 211, 0.3); /* 觸碰時背景顏色 */
+color: #000; /* 觸碰時文字顏色 */
+}
+  
+  
+
+
+
+/* 卡片 */
+.card {
+    border: none;
+}
+.card-header {
+    text-align: left;
+}
+
+/* 控制計算機和圖表的容器 */
+.app-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4.16vw;
+}
+/* 計算機 */
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    margin-right: 4.16vw;
+}
+.calculator-fieldset {
+    padding-top: 0.1vw;
+    border: 0.1vw solid white;
+    border-radius: 0.6vw;
+    width: 16vw;
+    font-size: 1.5vw;
+    height: 25vw;
+    margin-left: 2.4vw;
+    margin-bottom: 2vw;
+    overflow-y: auto;
+}
+.calculator-fieldset legend {
+    font-size: 1.35vw;
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+    font-size: 1.8vw;
+}
+.calculator-fieldset label {
+    font-size: 1.8vw;
+}
+
+.calculator-fieldset select,
+.calculator-fieldset input[type="number"],
+.calculator-fieldset input[type="date"] {
+    font-size: 1.8vw;
+    font-family: '標楷體', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.5vw;
+}
+
+.form-group {
+    margin-bottom: 2vw;
+    margin-top: 1vw;
+}
+.input {
+    font-size: 1.8vw;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5vw;
+}
+.input-group-text {
+    margin: 0 0.25vw;
+}
+label {
+    font-size: 1.35vw;
+}
+legend {
+    text-align: center;
+    font-size: 1.8vw;
+}
+
+.real-time-price {
+    text-align: center;
+    font-size: 2vw;
+    color: yellow;
+    margin-bottom: 1vw;
+    font-weight: bold;
+}
+
+
+.output-container {
+    margin-top: 0.5vw;
+    align-items: left;
+    margin-left: 10.42vw;
+    margin-bottom: 2vw;
+    width: 100%;
+    max-width: 20vw;
+}
+.output,.output:focus{
+
+    height: 5vw;
+    color: white;
+    background-color: transparent;
+    border: 0.1vw solid white;
+    border-radius: 0.375vw;
+    padding: 1.125vw 4.5vw;
+    font-size: 1.35vw;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-family: '標楷體', sans-serif;
+}
+.output:hover {
+    color: #ffcc00;
+}
+
+@keyframes clickEffect {
+    0% {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 0.833vw rgba(255, 255, 255, 0.5);
+    }
+}
+.chart-container {
+    width: 50vw;
+    height: 25vw;
+    display: inline-block;
+}
+
+
+@media screen and (max-width: 768px) {
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4.16vw;
+        align-items: center;
+    }
+    .calculator-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: auto;
+        margin-right: 4.16vw;
+    }
+    .calculator-fieldset {
+        border: 0.1vw solid white;
+        border-radius: 0.6vw;
+        padding: 1.5vw;
+        width: 65vw;
+        font-size: 4vw;
+        height: 45vw;
+        margin-bottom: 2vw;
+        overflow-y: auto;
+    }
+    .calculator-fieldset legend {
+        font-size: 3.5vw;
+        font-weight: bold;
+        margin-bottom: 0.5vw;
+    }
+    .calculator-fieldset label {
+        font-size: 3.5vw;
+    }
+    .form-group {
+        margin-bottom: 2vw;
+        margin-top: 1.33vw;
+        font-size: 3.5vw;
+    }
+    #frequency {
+        font-size: 3.5vw;
+    }
+    .form-group:last-child {
+        margin-bottom: 0.5vw;
+    }
+    .input {
+        font-size: 3.5vw;
+    }
+    .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5vw;
+    }
+    .input-group-text {
+        margin: 0 4vw;
+    }
+    label {
+        font-size: 2.5vw;
+    }
+    legend {
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    .output-container {
+        margin-top: 0.5vw;
+        align-items: left;
+        margin-left: 10.42vw;
+        margin-bottom: 2vw;
+    }
+
+    .output,.output:focus{
+        color: white;
+        background-color: transparent;
+        border: 0.4vw solid white;
+        border-radius: 1.2vw;
+        padding: 1.125vw 4.5vw;
+        font-size: 2vw;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        font-family: '標楷體', sans-serif;
+        margin-top: 3vw;
+    }
+    .output:hover {
+        color: #ffcc00;
+    }
+    .chart-container {
+        width: 80vw;
+        min-height: 50vw;
+    }
+    .chart-section {
+        margin-top: 15vw;
+    }
+}
+
+/* 網站理念 */
+.web-idea {
+    margin-bottom: 6vw;
+    font-size: 1.8vw;
+    margin-bottom: 1.5vw;
+}
+
+.DCA-average {
+    margin-bottom: 6vw;
+}
+
+.bitcoinsnow {
+    margin-top: 1.5vw;
+    margin-left: 4.5vw;
+    margin-bottom: 1.5vw;
+    display: inline-block;
+}
+
+.many-button {
+    margin-top: 10.42vw;
+    margin-bottom: 2.08vw;
+    margin-right: 9.6vw;
+    align-items: left;
+    margin-left: 9.6vw;
+}
+
+.title-web,
+.title-bitcoin-introduction,
+.title-DCA,
+.title-explanation,
+.message {
+    font-size: 4.5vw;
+    color: yellow;
+}
+
+.What-is-DCA-average {
+    text-align: left;
+    margin-bottom: 5.2vw;
+    font-size: 1.8vw;
+}
+
+.DCA-average ul {
+    font-size: 1.8vw;
+}
+
+.DCA-average p {
+    font-size: 1.8vw;
+}
+
+.student,
+.worker,
+.invenstor {
+    border-radius: 50%;
+    width: 21vw;
+    height: 21vw;
+    object-fit: cover;
+    align-items: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.text-student,
+.text-worker,
+.text-invenstor {
+    text-align: center;
+    max-width: 24vw;
+    width: 100%;
+    font-size: 4.17vw;
+    display: inline-block;
+}
+
+.DCA-img {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.student-container,
+.worker-container,
+.investor-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.bitcoin-introduction {
+    margin-bottom: 5.2vw;
+    font-size: 1.8vw;
+}
+
+.yitai,
+.liter,
+.ray,
+.cash,
+.poka {
+    border-radius: 50%;
+    width: 13.33333vw;
+    height: 13.33333vw;
+    margin-right: 6.25vw;
+}
+
+.text-container,
+.text-liter-container,
+.text-ray-container,
+.text-cash-container,
+.text-poka-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container h2,
+.text-liter-container h2,
+.text-ray-container h2,
+.text-cash-container h2,
+.text-poka-container h2 {
+    margin-top: -0.41667vw;
+    color: yellow;
+}
+
+.text-container h3,
+.text-liter-container h3,
+.text-ray-container h3,
+.text-cash-container h3,
+.text-poka-container h3 {
+    align-items: center;
+}
+
+.yitai-container,
+.liter-container,
+.ray-container,
+.cash-container,
+.poka-container {
+    font-family: '標楷體', sans-serif;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw;
+    margin-left: 0.83333vw;
+    margin-bottom: 2.08333vw;
+}
+
+/* 留言容器 */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vw; /* 增加內邊距 */
+    background-color: #333; /* 深色背景 */
+    border-radius: 1vw;
+    border: 0.1vw solid #444;
+}
+
+.message-container form {
+    font-size: 1.8vw;
+}
+
+.message-container form div {
+    font-size: 1.8vw;
+}
+
+.message-container,
+.message-container2,
+.message-container3 {
+    font-family: '標楷體', sans-serif;
+}
+
+.message-container3 fieldset {
+    margin-top: 2.08333vw;
+    border-radius: 3%;
+    flex-direction: column;
+    width: 100%;
+    min-width: 80vw;
+    max-height: 43.75vw;
+    margin-bottom: 2.08333vw;
+    border-color: black;
+}
+
+.blockchain,
+.news,
+.invenst {
+    border-radius: 50%;
+    height: 8.3vw;
+    width: 8.3vw;
+}
+
+.block-blockchain,
+.news-news,
+.invenst-invenst {
+    font-family: '標楷體', sans-serif;
+    display: flex;
+    margin-top: 4vw;
+}
+
+.block-blockchain h1,
+.news-news h1,
+.invenst-invenst h1 {
+    text-align: center;
+}
+
+fieldset h2 {
+    color: yellow;
+    text-align: center;
+    font-size: 6vw;
+}
+
+.news {
+    border-radius: 50%;
+    height: 13.33vw;
+    width: 13.33vw;
+}
+
+.news-news {
+    font-family: '標楷體', sans-serif;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw;
+    margin-bottom: 1.67vw;
+}
+
+.news-news h1 {
+    text-align: center;
+}
+
+.invenst {
+    border-radius: 50%;
+    height: 13.33vw;
+    width: 13.33vw;
+}
+
+.invenst-invenst {
+    font-family: '標楷體', sans-serif;
+    display: flex;
+    align-items: top;
+    margin-top: 6.25vw;
+    margin-left: 0.83vw;
+    margin-bottom: 1.67vw;
+}
+
+.invenst-invenst h1 {
+    text-align: center;
+}
+
+a h1 {
+    color: white;
+}
+
+/* 去掉鏈接的下劃線 */
+a {
+    text-decoration: none;
+}
+
+/* 懸停在鏈接上時顯示虛線 */
+a h1:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+h3 a:hover {
+    text-decoration: underline;
+    color: yellow;
+}
+
+.text-bitcoin-introduction {
+    margin-bottom: 10.42vw;
+    font-size: 3vw;
+    margin-top: 10.42vw;
+    margin-bottom: 2.08vw;
+    align-items: left;
+}
+
+.text-DCA-introduction {
+    margin-bottom: 10.42vw;
+    font-size: 3vw;
+    margin-top: 10.42vw;
+    margin-bottom: 2.08vw;
+    align-items: left;
+}
+
+.form-group input {
+    margin-top: 2.22vw;
+}
+
+/* 留言區域 */
+.comment-section {
+    font-family: '標楷體', sans-serif;
+    margin-top: 2vw;
+    border-radius: 0.5vw;
+    width: 100%;
+    max-height: 50vh; /* 設定最大高度 */
+    overflow-y: auto;
+    background-color: #222; /* 深色背景 */
+    padding: 1vw;
+    color: yellow;
+}
+
+.comment-section fieldset {
+    margin-top: 2.22vw;
+    border-radius: 3%;
+    flex-direction: column;
+    width: 60vw;
+    max-height: 50vw;
+    margin-bottom: 2.22vw;
+    border-color: white;
+    align-items: flex-start;
+    overflow-y: auto;
+    color: yellow;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-section,
+.message-container3 {
+    border-radius: 3%;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.comment-section {
+    margin-right: 2.78vw;
+}
+
+/* 留言文本 */
+.message-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border: 0.1vw solid #555; /* 邊框 */
+    border-radius: 0.5vw; /* 圓角 */
+    padding: 1vw; /* 內邊距 */
+    margin-bottom: 1vw; /* 底部間距 */
+    background-color: #333; /* 背景顏色 */
+}
+
+
+/* 按鈕 */
+button {
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 1.5vw;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 1vw;
+}
+
+button:hover,
+button:focus {
+    background-color: #e6b800;
+    box-shadow: 0 0 0.5vw rgba(255, 255, 255, 0.3);
+}
+
+/* 新增的部分：未按讚時的顏色 */
+button:not(.liked) {
+    background-color: #ffcc00; /* 按讚前的顏色 */
+}
+
+/* 新增的部分：按讚時的顏色 */
+button.liked {
+    background-color: #e6b800; /* 按讚後的顏色 */
+}
+
+
+/* 回覆區域 */
+.reply-section {
+    margin-top: 2vw;
+    padding: 1vw;
+    border-top: 0.1vw solid #444;
+    background-color: #333;
+}
+
+.reply-section .reply-text {
+    margin-top: 1vw;
+    padding: 0.5vw;
+    border: 0.1vw solid #555;
+    border-radius: 0.5vw;
+    background-color: #444;
+    color: white;
+}
+
+.centered-heading {
+    text-align: center; /* 使文本在容器中水平居中 */
+    margin: 2vw auto; /* 上下邊距，左右自動居中 */
+    width: fit-content; /* 根據內容自動調整寬度 */
+}
+
+.form-control::-webkit-inner-spin-button,
+.form-control::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
