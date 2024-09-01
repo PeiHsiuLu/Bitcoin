@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Bitcoin/static/css/main.1ae7488f.css",
-    "main.js": "/Bitcoin/static/js/main.62007017.js",
-    "static/js/453.419a5d54.chunk.js": "/Bitcoin/static/js/453.419a5d54.chunk.js",
-    "static/media/pei.jpg": "/Bitcoin/static/media/pei.90be309321d8f7fcd4b6.jpg",
-    "index.html": "/Bitcoin/index.html",
-    "main.1ae7488f.css.map": "/Bitcoin/static/css/main.1ae7488f.css.map",
-    "main.62007017.js.map": "/Bitcoin/static/js/main.62007017.js.map",
-    "453.419a5d54.chunk.js.map": "/Bitcoin/static/js/453.419a5d54.chunk.js.map"
+    "main.css": "/static/css/main.7f4dd08e.css",
+    "main.js": "/static/js/main.a0a2c844.js",
+    "static/js/453.419a5d54.chunk.js": "/static/js/453.419a5d54.chunk.js",
+    "static/media/pei.jpg": "/static/media/pei.90be309321d8f7fcd4b6.jpg",
+    "index.html": "/index.html",
+    "main.7f4dd08e.css.map": "/static/css/main.7f4dd08e.css.map",
+    "main.a0a2c844.js.map": "/static/js/main.a0a2c844.js.map",
+    "453.419a5d54.chunk.js.map": "/static/js/453.419a5d54.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ae7488f.css",
-    "static/js/main.62007017.js"
+    "static/css/main.7f4dd08e.css",
+    "static/js/main.a0a2c844.js"
   ]
 }
