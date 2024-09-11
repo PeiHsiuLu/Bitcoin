@@ -40,6 +40,7 @@ npm start
 
 
 ## 留言板
+留言板的資料庫，使用 Firebase 第三方資料庫進行串接  
 ![image](https://github.com/user-attachments/assets/7fe4dacf-de3b-4c10-b7e6-a7759b842adc)  
 * 用戶可在網站上留下自己的使用心得，並且可以透過回覆留言與其他用戶進行互動交流
 * 透過類似ptt的留言方式，將最舊留言與最新留言，由上而下依序排列
