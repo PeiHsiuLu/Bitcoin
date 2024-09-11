@@ -31,3 +31,16 @@ npm start
 * 每周
 * 每兩個星期
 * 每個月
+## 介紹比特幣與 DCA 運作模式
+![image](https://github.com/user-attachments/assets/82126254-5ba2-47b0-8ae1-e946dfcd2ed5)  
+![image](https://github.com/user-attachments/assets/f667abc7-9fca-439a-87ea-363ba85bb6eb)  
+介紹比特幣運作模式與DCA投資模式，讓更多人能透過 DCA 來投資虛擬貨幣
+
+
+## 留言板
+![image](https://github.com/user-attachments/assets/7fe4dacf-de3b-4c10-b7e6-a7759b842adc)  
+* 用戶可在網站上留下自己的使用心得，並且可以透過回覆留言與其他用戶進行互動交流
+* 透過類似ptt的留言方式，將最舊留言與最新留言，由上而下依序排列
+* 可以對於喜好的留言點讚  
+![image](https://github.com/user-attachments/assets/8618149c-a3fa-4537-8a79-039425971ac6)
+
